@@ -8,8 +8,8 @@ import { Store } from '../../utils/Store'
 
 const ProductScreen = () => {
   const { state, dispatch } = useContext(Store)
-  const { query } = useRouter()
-  const { slug } = query
+  const router = useRouter()
+  const { slug } = router.query
   const product = data.products.find((product) => product.slug === slug)
 
   const handleAddToCart = () => {
@@ -21,6 +21,7 @@ const ProductScreen = () => {
       return
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    router.push('/cart')
   }
 
   if (!product) {
