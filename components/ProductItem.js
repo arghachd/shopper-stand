@@ -8,17 +8,17 @@ const ProductItem = ({ product }) => {
       <Link href={`/product/${product.slug}`}>
         <a>
           <img
-            class='rounded-t-lg p-8 object-cover'
+            className='rounded-t-lg p-8 object-cover'
             src={product.image}
             alt={product.name}
           />
         </a>
       </Link>
 
-      <div class='px-5 pb-5'>
+      <div className='px-5 pb-5'>
         <Link href={`/product/${product.slug}`}>
           <a>
-            <h3 class='text-gray-900 font-semibold text-xl tracking-tight'>
+            <h3 className='text-gray-900 font-semibold text-xl tracking-tight'>
               {product.name}
             </h3>
           </a>
@@ -32,8 +32,10 @@ const ProductItem = ({ product }) => {
             5.0
           </span>
         </div> */}
-        <div class='flex items-center justify-between'>
-          <span class='text-3xl font-bold text-gray-900'>${product.price}</span>
+        <div className='flex items-center justify-between'>
+          <span className='text-3xl font-bold text-gray-900'>
+            ${product.price}
+          </span>
           <button className='primary-button'>Add to cart</button>
         </div>
       </div>
