@@ -13,9 +13,15 @@ const CartScreen = () => {
     cart: { cartItems },
   } = state
 
+  const handleUpdateQuantity = (updatedQty, item) => {
+    const quantity = Number(updatedQty)
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
+  }
+
   const handleRemoveItemFromCart = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item })
   }
+
   return (
     <Layout title='Shopping Cart' description='Shopping cart of shopping stand'>
       <h1 className='mb-4 text-xl'>Shopping Cart</h1>
@@ -55,7 +61,22 @@ const CartScreen = () => {
                         </a>
                       </Link>
                     </td>
-                    <td className='p-5 text-right'>{item.quantity}</td>
+                    <td className='p-5 text-right'>
+                      <select
+                        name=''
+                        id=''
+                        value={item.quantity}
+                        onChange={(e) =>
+                          handleUpdateQuantity(e.target.value, item)
+                        }
+                      >
+                        {[...Array(item.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
                     <td className='p-5 text-right'>${item.price}</td>
                     <td className='p-5 text-center'>
                       <button onClick={() => handleRemoveItemFromCart(item)}>
